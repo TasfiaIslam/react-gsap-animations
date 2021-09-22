@@ -3,13 +3,20 @@
 @tailwind utilities;
 
 @layer base {
+  .hero {
+    @apply bg-cover bg-opacity-25;
+  }
   .hero > img {
-    @apply w-full h-96 object-cover rounded-md;
+    @apply w-full h-96  object-cover  rounded-md;
+    transition: all 400ms ease 0s;
   }
-  .title {
-    @apply font-semibold py-4 bg-green-700 text-green-200;
+  .description-heading {
+    @apply font-bold text-xl pb-4;
   }
-  .content {
-    @apply pt-4 text-gray-600;
+  .flower-card-title {
+    @apply font-semibold py-4 bg-green-700 text-white;
+  }
+  .flower-card-text {
+    @apply pt-4 text-gray-700 font-semibold;
   }
 }

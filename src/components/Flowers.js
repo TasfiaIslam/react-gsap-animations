@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-import { gsap, Power3, Bounce } from "gsap";
+import { gsap, Power3, Bounce, Linear } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import waterlilly from "./_icons/waterlilly.svg";
@@ -12,7 +12,7 @@ import tonlima from "./_icons/tonlima.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Steps = () => {
+const Flowers = () => {
   const titleSectionRefs = useRef([]);
   titleSectionRefs.current = [];
 
@@ -23,9 +23,6 @@ const Steps = () => {
 
   const imgRefs = useRef([]);
   imgRefs.current = [];
-
-  const heroRefs = useRef([]);
-  heroRefs.current = [];
 
   const addToLeftDivRefs = (el) => {
     if (el && !lelftDivRefs.current.includes(el)) {
@@ -48,42 +45,6 @@ const Steps = () => {
     }
   };
 
-  const addToHeroRefs = (el) => {
-    if (el && !heroRefs.current.includes(el)) {
-      heroRefs.current.push(el);
-    }
-  };
-
-  const animateHeroImages = () => {
-    heroRefs.current.forEach((el, index) => {
-      gsap.fromTo(
-        el,
-        {
-          skewX: 0,
-          skewY: 0,
-          z: -10,
-        },
-        {
-          duration: 1,
-          skewX: 0,
-          skewY: 0,
-          z: 10,
-          transformOrigin: "0% 100%",
-          // force3D: true,
-          scrollTrigger: {
-            id: `img-${index + 1}`,
-            trigger: el,
-            pin: true,
-            start: "top top",
-            end: "+=500",
-            scrub: 1,
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    });
-  };
-
   const animateImages = () => {
     imgRefs.current.forEach((el, index) => {
       gsap.fromTo(
@@ -103,7 +64,7 @@ const Steps = () => {
           scrollTrigger: {
             id: `img-${index + 1}`,
             trigger: el,
-            start: "top center+=100",
+            start: "top center+=200",
             toggleActions: "play none none none",
           },
         }
@@ -126,7 +87,7 @@ const Steps = () => {
           scrollTrigger: {
             id: `title-${index + 1}`,
             trigger: el,
-            start: "top center+=50",
+            start: "top center+=200",
             toggleActions: "play none none reverse",
             onEnterBack: (self) =>
               console.log("toggled, isActive:", self.isActive),
@@ -193,7 +154,6 @@ const Steps = () => {
   };
 
   useEffect(() => {
-    animateHeroImages();
     animateTitles();
     animateImages();
     animateLeft();
@@ -201,30 +161,9 @@ const Steps = () => {
   }, []);
   return (
     <>
-      <div className="hero pt-10">
-        <img
-          src="https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171__480.jpg"
-          alt="hero"
-          ref={addToHeroRefs}
-        />
-      </div>
-      <div className="hero pt-10">
-        <img
-          src="https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          alt="hero"
-          ref={addToHeroRefs}
-        />
-      </div>
-      <div className="hero pt-10">
-        <img
-          src="https://www.mmppicture.co.in/wp-content/uploads/2021/04/CB-Background-138-857x1080.jpg"
-          alt="hero"
-          ref={addToHeroRefs}
-        />
-      </div>
-      <div className="pr-2 md:pr-5 pt-20 pb-10 flex justify-end step-right">
+      <div className="pr-2 md:pr-5 pt-60 pb-10 flex justify-end section-right">
         <div className="pt-10 flex flex-col" ref={addToTitleRefs}>
-          <h1 className="font-bold text-lg pb-4">Build App Fast</h1>
+          <h1 className="description-heading">Description</h1>
           <p className="text-sm w-2/3 mx-auto md:w-4/5">
             Building self-hosted, customizable, and performant content API has
             never been easier.
@@ -234,8 +173,8 @@ const Steps = () => {
           className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
           ref={addToRightDivRefs}
         >
-          <p className="title">Waterlilly</p>
-          <p className="content">
+          <p className="flower-card-title">Waterlilly</p>
+          <p className="flower-card-text">
             Water Lily (shapla) an aquatic plant of the genus Nymphaea which has
             large, disk-like, floating leaves and showy flowers.
           </p>
@@ -249,13 +188,13 @@ const Steps = () => {
           </div>
         </div>
       </div>
-      <div className="pl-2 md:pl-5 flex justify-start step-left">
+      <div className="pl-2 md:pl-5 flex justify-start section-left">
         <div
           className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
           ref={addToLeftDivRefs}
         >
-          <p className="title">Daffodil</p>
-          <p className="content">
+          <p className="flower-card-title">Daffodil</p>
+          <p className="flower-card-text">
             Water Lily (shapla) an aquatic plant of the genus Nymphaea which has
             large, disk-like, floating leaves and showy flowers.
           </p>
@@ -269,16 +208,16 @@ const Steps = () => {
           </div>
         </div>
         <div className="pt-10 flex flex-col" ref={addToTitleRefs}>
-          <h1 className="font-bold text-lg pb-4">Build App Fast</h1>
+          <h1 className="description-heading">Description</h1>
           <p className="text-sm w-2/3 mx-auto md:w-4/5">
             Building self-hosted, customizable, and performant content API has
             never been easier.
           </p>
         </div>
       </div>
-      <div className="pr-2 md:pr-5 py-10 flex justify-end step-right">
+      <div className="pr-2 md:pr-5 py-10 flex justify-end section-right">
         <div className="pt-10 flex flex-col" ref={addToTitleRefs}>
-          <h1 className="font-bold text-lg pb-4">Build App Fast</h1>
+          <h1 className="description-heading">Description</h1>
           <p className="text-sm w-2/3 mx-auto md:w-4/5">
             Building self-hosted, customizable, and performant content API has
             never been easier.
@@ -288,8 +227,8 @@ const Steps = () => {
           className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
           ref={addToRightDivRefs}
         >
-          <p className="title">Herbs</p>
-          <p className="content">
+          <p className="flower-card-title">Herbs</p>
+          <p className="flower-card-text">
             Water Lily (shapla) an aquatic plant of the genus Nymphaea which has
             large, disk-like, floating leaves and showy flowers.
           </p>
@@ -303,13 +242,13 @@ const Steps = () => {
           </div>
         </div>
       </div>
-      <div className="pl-2  md:pl-5 pb-10 flex justify-start step-left">
+      <div className="pl-2  md:pl-5 pb-10 flex justify-start section-left">
         <div
           className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
           ref={addToLeftDivRefs}
         >
-          <p className="title">Tonlima</p>
-          <p className="content">
+          <p className="flower-card-title">Tonlima</p>
+          <p className="flower-card-text">
             Water Lily (shapla) an aquatic plant of the genus Nymphaea which has
             large, disk-like, floating leaves and showy flowers.
           </p>
@@ -323,16 +262,16 @@ const Steps = () => {
           </div>
         </div>
         <div className="pt-10 flex flex-col" ref={addToTitleRefs}>
-          <h1 className="font-bold text-lg pb-4">Build App Fast</h1>
+          <h1 className="description-heading">Description</h1>
           <p className="text-sm w-2/3 mx-auto md:w-4/5">
             Building self-hosted, customizable, and performant content API has
             never been easier.
           </p>
         </div>
       </div>
-      <div className="pr-2 md:pr-5 flex justify-end step-right">
+      <div className="pr-2 md:pr-5 flex justify-end section-right">
         <div className="pt-10 flex flex-col" ref={addToTitleRefs}>
-          <h1 className="font-bold text-lg pb-4">Build App Fast</h1>
+          <h1 className="description-heading">Description</h1>
           <p className="text-sm w-2/3 mx-auto md:w-4/5">
             Building self-hosted, customizable, and performant content API has
             never been easier.
@@ -342,8 +281,8 @@ const Steps = () => {
           className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
           ref={addToRightDivRefs}
         >
-          <p className="title">Random Flower</p>
-          <p className="content">
+          <p className="flower-card-title">Random Flower</p>
+          <p className="flower-card-text">
             Water Lily (shapla) an aquatic plant of the genus Nymphaea which has
             large, disk-like, floating leaves and showy flowers.
           </p>
@@ -357,13 +296,13 @@ const Steps = () => {
           </div>
         </div>
       </div>
-      <div className="pl-2 md:pl-5 py-10 flex justify-start step-left">
+      <div className="pl-2 md:pl-5 py-10 flex justify-start section-left">
         <div
           className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
           ref={addToLeftDivRefs}
         >
-          <p className="title">Bungaku</p>
-          <p className="content">
+          <p className="flower-card-title">Bungaku</p>
+          <p className="flower-card-text">
             Water Lily (shapla) an aquatic plant of the genus Nymphaea which has
             large, disk-like, floating leaves and showy flowers.
           </p>
@@ -377,7 +316,7 @@ const Steps = () => {
           </div>
         </div>
         <div className="pt-10 flex flex-col" ref={addToTitleRefs}>
-          <h1 className="font-bold text-lg pb-4">Build App Fast</h1>
+          <h1 className="description-heading">Description</h1>
           <p className="text-sm w-2/3 mx-auto md:w-4/5">
             Building self-hosted, customizable, and performant content API has
             never been easier.
@@ -387,4 +326,4 @@ const Steps = () => {
     </>
   );
 };
-export default Steps;
+export default Flowers;
