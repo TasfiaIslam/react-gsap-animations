@@ -8,7 +8,6 @@
   }
   .hero > img {
     @apply w-full h-96  object-cover  rounded-md;
-    transition: all 400ms ease 0s;
   }
   .description-heading {
     @apply font-bold text-xl pb-4;

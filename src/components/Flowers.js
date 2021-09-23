@@ -98,20 +98,48 @@ const Flowers = () => {
   };
 
   const animateLeft = () => {
+    // lelftDivRefs.current.forEach((el, index) => {
+    //   gsap.fromTo(
+    //     el,
+    //     {
+    //       autoAlpha: 0,
+    //       x: 100,
+    //       y: 20,
+    //     },
+    //     {
+    //       duration: 1,
+    //       autoAlpha: 1,
+    //       ease: Power3.easeOut,
+    //       x: 0,
+    //       y: 0,
+    //       scrollTrigger: {
+    //         id: `leftSection-${index + 1}`,
+    //         trigger: el,
+    //         start: "top center+=100",
+    //         toggleActions: "play none none reverse",
+    //         onEnterBack: (self) =>
+    //           console.log("toggled, isActive:", self.isActive),
+    //       },
+    //     }
+    //   );
+    // });
     lelftDivRefs.current.forEach((el, index) => {
       gsap.fromTo(
         el,
         {
           autoAlpha: 0,
-          x: 100,
-          y: 20,
+          xPercent: 100,
+          yPercent: -50,
+          opacity: 0,
+          rotateY: 15,
         },
         {
-          duration: 1,
           autoAlpha: 1,
-          ease: Power3.easeOut,
-          x: 0,
-          y: 0,
+          duration: 1,
+          xPercent: 0,
+          yPercent: 0,
+          opacity: 1,
+          rotateY: -15,
           scrollTrigger: {
             id: `leftSection-${index + 1}`,
             trigger: el,
@@ -126,20 +154,48 @@ const Flowers = () => {
   };
 
   const animateRight = () => {
+    // rightDivRefs.current.forEach((el, index) => {
+    //   gsap.fromTo(
+    //     el,
+    //     {
+    //       autoAlpha: 0,
+    //       x: -100,
+    //       y: -20,
+    //     },
+    //     {
+    //       duration: 1,
+    //       autoAlpha: 1,
+    //       x: 0,
+    //       y: 0,
+    //       ease: Power3.easeOut,
+    //       scrollTrigger: {
+    //         id: `rightSection-${index + 1}`,
+    //         trigger: el,
+    //         start: "top center+=100",
+    //         toggleActions: "play none none reverse",
+    //         onEnterBack: (self) =>
+    //           console.log("toggled, isActive:", self.isActive),
+    //       },
+    //     }
+    //   );
+    // });
     rightDivRefs.current.forEach((el, index) => {
       gsap.fromTo(
         el,
         {
           autoAlpha: 0,
-          x: -100,
-          y: -20,
+          xPercent: -100,
+          yPercent: -50,
+          opacity: 0,
+          rotateY: 15,
         },
         {
-          duration: 1,
           autoAlpha: 1,
-          x: 0,
-          y: 0,
-          ease: Power3.easeOut,
+          duration: 1,
+          xPercent: 0,
+          yPercent: 0,
+          opacity: 1,
+          rotateY: -15,
           scrollTrigger: {
             id: `rightSection-${index + 1}`,
             trigger: el,
