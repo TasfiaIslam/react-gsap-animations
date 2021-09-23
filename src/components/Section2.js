@@ -18,15 +18,16 @@ const Section2 = () => {
       },
       {
         duration: 1,
-        xPercent: 100,
-        yPercent: 60,
+        xPercent: 0,
+        yPercent: 20,
         opacity: 1,
         rotateY: -15,
         scrollTrigger: {
           trigger: container.current,
           start: "top top",
+          pin: true,
           ease: Elastic.easeIn,
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       }
     );
@@ -37,7 +38,7 @@ const Section2 = () => {
       <div className="py-64">
         <div className="w-full  bg-gray-800" ref={container}>
           <img
-            className="h-full w-2/3 lg:h-96 lg:w-1/2 object-cover rounded-md "
+            className="h-full w-2/3 mx-auto lg:h-96 lg:w-1/2 object-cover rounded-md"
             src="https://media.istockphoto.com/photos/flowers-on-the-shore-of-lake-geneva-picture-id1280003274?b=1&k=20&m=1280003274&s=170667a&w=0&h=bFSswo40EQIa6Ohj7iyXSXbo4Fh2Ud3fxGnFfzUsLqU="
             alt="flowers"
             ref={imgRef}

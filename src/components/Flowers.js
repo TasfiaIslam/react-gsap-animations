@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-import { gsap, Power3, Bounce, Linear } from "gsap";
+import { gsap, Power3, Bounce, Linear, Sine, Power0 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import waterlilly from "./_icons/waterlilly.svg";
@@ -98,31 +98,6 @@ const Flowers = () => {
   };
 
   const animateLeft = () => {
-    // lelftDivRefs.current.forEach((el, index) => {
-    //   gsap.fromTo(
-    //     el,
-    //     {
-    //       autoAlpha: 0,
-    //       x: 100,
-    //       y: 20,
-    //     },
-    //     {
-    //       duration: 1,
-    //       autoAlpha: 1,
-    //       ease: Power3.easeOut,
-    //       x: 0,
-    //       y: 0,
-    //       scrollTrigger: {
-    //         id: `leftSection-${index + 1}`,
-    //         trigger: el,
-    //         start: "top center+=100",
-    //         toggleActions: "play none none reverse",
-    //         onEnterBack: (self) =>
-    //           console.log("toggled, isActive:", self.isActive),
-    //       },
-    //     }
-    //   );
-    // });
     lelftDivRefs.current.forEach((el, index) => {
       gsap.fromTo(
         el,
@@ -132,6 +107,7 @@ const Flowers = () => {
           yPercent: -50,
           opacity: 0,
           rotateY: 15,
+          ease: Sine.inOut,
         },
         {
           autoAlpha: 1,
@@ -143,10 +119,10 @@ const Flowers = () => {
           scrollTrigger: {
             id: `leftSection-${index + 1}`,
             trigger: el,
-            start: "top center+=100",
+            // pin: true,
+            start: "top 50%",
+
             toggleActions: "play none none reverse",
-            onEnterBack: (self) =>
-              console.log("toggled, isActive:", self.isActive),
           },
         }
       );
@@ -154,31 +130,6 @@ const Flowers = () => {
   };
 
   const animateRight = () => {
-    // rightDivRefs.current.forEach((el, index) => {
-    //   gsap.fromTo(
-    //     el,
-    //     {
-    //       autoAlpha: 0,
-    //       x: -100,
-    //       y: -20,
-    //     },
-    //     {
-    //       duration: 1,
-    //       autoAlpha: 1,
-    //       x: 0,
-    //       y: 0,
-    //       ease: Power3.easeOut,
-    //       scrollTrigger: {
-    //         id: `rightSection-${index + 1}`,
-    //         trigger: el,
-    //         start: "top center+=100",
-    //         toggleActions: "play none none reverse",
-    //         onEnterBack: (self) =>
-    //           console.log("toggled, isActive:", self.isActive),
-    //       },
-    //     }
-    //   );
-    // });
     rightDivRefs.current.forEach((el, index) => {
       gsap.fromTo(
         el,
@@ -188,6 +139,7 @@ const Flowers = () => {
           yPercent: -50,
           opacity: 0,
           rotateY: 15,
+          ease: Sine.inOut,
         },
         {
           autoAlpha: 1,
@@ -199,10 +151,9 @@ const Flowers = () => {
           scrollTrigger: {
             id: `rightSection-${index + 1}`,
             trigger: el,
-            start: "top center+=100",
+            // pin: true,
+            start: "top 50%",
             toggleActions: "play none none reverse",
-            onEnterBack: (self) =>
-              console.log("toggled, isActive:", self.isActive),
           },
         }
       );

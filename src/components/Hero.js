@@ -39,6 +39,7 @@ const Hero = () => {
         skewY: 0,
         scrollTrigger: {
           trigger: heroDivRef.currentt,
+
           start: "top top",
           ease: Elastic.easeIn,
           toggleActions: "play none none reverse",
