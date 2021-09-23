@@ -72,6 +72,31 @@ const Flowers = () => {
     });
   };
 
+  const controlSpeed = () => {
+    let proxy = { skew: 0 },
+      skewSetter = gsap.quickSetter(".skewElem", "skewY", "deg"),
+      clamp = gsap.utils.clamp(-20, 20);
+
+    ScrollTrigger.create({
+      onUpdate: (self) => {
+        let skew = clamp(self.getVelocity() / -300);
+        if (Math.abs(skew) > Math.abs(proxy.skew)) {
+          proxy.skew = skew;
+          gsap.to(proxy, {
+            skew: 0,
+            duration: 0.8,
+            ease: "power3",
+            overwrite: true,
+            onUpdate: () => skewSetter(proxy.skew),
+          });
+        }
+      },
+    });
+
+    // make the right edge "stick" to the scroll bar. force3D: true improves performance
+    gsap.set(".skewElem", { transformOrigin: "right center", force3D: true });
+  };
+
   const animateTitles = () => {
     titleSectionRefs.current.forEach((el, index) => {
       gsap.fromTo(
@@ -165,6 +190,7 @@ const Flowers = () => {
     animateImages();
     animateLeft();
     animateRight();
+    controlSpeed();
   }, []);
   return (
     <>
@@ -177,7 +203,7 @@ const Flowers = () => {
           </p>
         </div>
         <div
-          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
+          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green skewElem"
           ref={addToRightDivRefs}
         >
           <p className="flower-card-title">Waterlilly</p>
@@ -197,7 +223,7 @@ const Flowers = () => {
       </div>
       <div className="pl-2 md:pl-5 flex justify-start section-left">
         <div
-          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
+          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green skewElem"
           ref={addToLeftDivRefs}
         >
           <p className="flower-card-title">Daffodil</p>
@@ -231,7 +257,7 @@ const Flowers = () => {
           </p>
         </div>
         <div
-          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
+          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green skewElem"
           ref={addToRightDivRefs}
         >
           <p className="flower-card-title">Herbs</p>
@@ -251,7 +277,7 @@ const Flowers = () => {
       </div>
       <div className="pl-2  md:pl-5 pb-10 flex justify-start section-left">
         <div
-          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
+          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green skewElem"
           ref={addToLeftDivRefs}
         >
           <p className="flower-card-title">Tonlima</p>
@@ -285,7 +311,7 @@ const Flowers = () => {
           </p>
         </div>
         <div
-          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
+          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green skewElem"
           ref={addToRightDivRefs}
         >
           <p className="flower-card-title">Random Flower</p>
@@ -305,7 +331,7 @@ const Flowers = () => {
       </div>
       <div className="pl-2 md:pl-5 py-10 flex justify-start section-left">
         <div
-          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green"
+          className="w-72 md:w-96 h-96 flex flex-col border-2 border-green-500 rounded-lg shadow-green skewElem"
           ref={addToLeftDivRefs}
         >
           <p className="flower-card-title">Bungaku</p>

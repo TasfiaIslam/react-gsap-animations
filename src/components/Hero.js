@@ -64,8 +64,31 @@ const Hero = () => {
       reverse: true,
     });
   };
+
+  const controlSpeed = () => {
+    let proxy = { skew: 0 },
+      skewSetter = gsap.quickSetter(".skewElem", "skewY", "deg"),
+      clamp = gsap.utils.clamp(-20, 20);
+
+    ScrollTrigger.create({
+      onUpdate: (self) => {
+        let skew = clamp(self.getVelocity() / -300);
+        if (Math.abs(skew) > Math.abs(proxy.skew)) {
+          proxy.skew = skew;
+          gsap.to(proxy, {
+            skew: 0,
+            duration: 0.8,
+            ease: "power3",
+            overwrite: true,
+            onUpdate: () => skewSetter(proxy.skew),
+          });
+        }
+      },
+    });
+  };
   useEffect(() => {
     animateHeroImage();
+    controlSpeed();
   }, []);
 
   return (
@@ -108,6 +131,7 @@ const Hero = () => {
       </div>
       <div className="hero pt-5 absolute inset-x-0 w-96 mx-auto">
         <img
+          className="skewElem"
           src="https://www.mmppicture.co.in/wp-content/uploads/2021/04/CB-Background-138-857x1080.jpg"
           alt="hero"
           ref={heroRefs}
