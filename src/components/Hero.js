@@ -93,7 +93,7 @@ const Hero = () => {
 
   return (
     <div
-      className="bg-gradient-to-br from-gray-900 via-purple-900 to-purple-700 relative pt-48 pb-20 h-2/3 mx-auto z-0"
+      className="bg-gradient-to-r from-gray-900 to-purple-900 relative pt-48 pb-20 h-2/3 mx-auto z-0"
       ref={heroDivRef}
     >
       <div className="w-2/3 mx-auto flex flex-col justify-center">

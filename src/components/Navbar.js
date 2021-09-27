@@ -40,12 +40,14 @@ const Navbar = () => {
     >
       <div className="md:w-8/12 md:mx-auto px-6 py-8 flex justify-between">
         <div
-          className={`flex space-x-6 lg:space-x-12   ${
+          className={`flex space-x-4 lg:space-x-12   ${
             colorChange ? "text-purple-900" : "text-white"
           }`}
         >
-          <div className="text-3xl font-bold">Logo</div>
-          <ul className="flex space-x-6 lg:space-x-10 items-center text-lg">
+          <div className="text-xl 2xl:text-3xl font-bold flex items-center">
+            Logo
+          </div>
+          <ul className="flex space-x-2 lg:space-x-10 items-center text-base  2xl:text-lg">
             <li>
               <a href="/">
                 <span

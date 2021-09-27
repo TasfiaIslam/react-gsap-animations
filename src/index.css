@@ -4,7 +4,7 @@
 
 @layer base {
   .header-link-item {
-    @apply relative;
+    @apply relative w-full;
   }
   .header-link-item::after {
     content: "";
@@ -23,7 +23,7 @@
     border: solid 1px #fff;
   }
   .nav-button {
-    @apply rounded-lg px-8 py-2 cursor-pointer relative;
+    @apply rounded-lg px-4 text-base lg:px-8 py-2 cursor-pointer relative;
     transition: border 0.2s ease;
     transform: translate3d(0px, 0px, 40px);
   }
