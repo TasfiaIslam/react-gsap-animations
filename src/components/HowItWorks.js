@@ -82,12 +82,12 @@ const HowItWorks = () => {
       </div>
       <div className="bg-purple-900 py-30 ">
         <div className="flex flex-col py-20 relative">
-          <img
-            className="h-24 w-24 mx-auto lg:h-96 lg:w-1/2 object-cover rounded-full absolute"
+          {/* <img
+            className="h-10 w-10 mx-auto   object-cover rounded-full absolute"
             alt="flowers"
             ref={addToImgRefs}
             src="https://media.istockphoto.com/photos/flowers-on-the-shore-of-lake-geneva-picture-id1280003274?b=1&k=20&m=1280003274&s=170667a&w=0&h=bFSswo40EQIa6Ohj7iyXSXbo4Fh2Ud3fxGnFfzUsLqU="
-          />
+          /> */}
           <p className="w-2/3 mx-auto py-8 text-white" ref={textRef}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus

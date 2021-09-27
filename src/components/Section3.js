@@ -5,17 +5,18 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const Section3 = () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  const rightTriangleRef = useRef();
-  const leftTriangleRef = useRef();
+  const triangle2Ref = useRef();
+  const triangle1Ref = useRef();
+  const triangle3Ref = useRef();
 
   const heroTextRef = useRef([]);
   heroTextRef.current = [];
 
-  const rightImgRef = useRef();
   const rightImgDivRef = useRef();
 
-  const leftImgRef = useRef();
-  const leftImgDivRef = useRef();
+  const step1Ref = useRef();
+  const step2Ref = useRef();
+  const step3Ref = useRef();
 
   const addToHeroTextRefs = (el) => {
     if (el && !heroTextRef.current.includes(el)) {
@@ -25,23 +26,7 @@ const Section3 = () => {
 
   const animateTriangles = () => {
     gsap.fromTo(
-      rightTriangleRef.current,
-      {
-        duration: 1,
-        y: 0,
-      },
-      {
-        duration: 1,
-        y: 50,
-        scrollTrigger: {
-          trigger: rightTriangleRef.current,
-          start: "top top",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-    gsap.fromTo(
-      leftTriangleRef.current,
+      triangle1Ref.current,
       {
         duration: 1,
         y: 50,
@@ -50,81 +35,152 @@ const Section3 = () => {
         duration: 1,
         y: 0,
         scrollTrigger: {
-          trigger: leftTriangleRef.current,
+          trigger: triangle1Ref.current,
           start: "top top",
-          toggleActions: "play complete none reverse",
-        },
-      }
-    );
-  };
-
-  const animateRightImg = () => {
-    gsap.fromTo(
-      rightImgRef.current,
-      {
-        opacity: 0,
-        duration: 1,
-        y: -30,
-        x: -50,
-      },
-      {
-        opacity: 1,
-        duration: 1,
-        y: 30,
-        x: 0,
-        scrollTrigger: {
-          trigger: rightImgRef.current,
-          start: "top center",
           toggleActions: "play none none reverse",
         },
       }
     );
-    gsap.from(rightImgDivRef.current, {
-      opacity: 0,
-      duration: 1,
-      backgroundPosition: "200px 0px",
-    });
+    gsap.fromTo(
+      triangle2Ref.current,
+      {
+        duration: 1,
+        y: 0,
+      },
+      {
+        duration: 1,
+        y: 50,
+        scrollTrigger: {
+          trigger: triangle2Ref.current,
+          start: "top top",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+    gsap.fromTo(
+      triangle3Ref.current,
+      {
+        duration: 1,
+        y: 50,
+      },
+      {
+        duration: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: triangle3Ref.current,
+          start: "top top",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
   };
 
-  const animateLeftImg = () => {
-    const anim = gsap.fromTo(
-      leftImgRef.current,
+  const animateStep1 = () => {
+    gsap.fromTo(
+      step1Ref.current,
       {
-        opacity: 0,
+        display: "none",
         duration: 1,
         y: 30,
         x: 50,
+        rotateX: 0,
+        rotateY: -10,
+        scaleX: 1,
       },
       {
-        opacity: 1,
+        display: "block",
         duration: 1,
+        scrub: 1,
         y: 10,
         x: 0,
+        rotateX: 10,
+        rotateY: 10,
+        scaleX: 1.04,
+        pin: true,
+        scrollTrigger: {
+          trigger: step1Ref.current,
+          start: "top center",
+          end: "bottom top",
+          toggleActions: "play reverse play reverse",
+        },
       }
     );
-    // scrollTrigger: {
-    //       trigger: leftImgRef.current,
-    //       start: 'top top+=50',
-    //       toggleActions: 'play none none play',
-    //     },
-    ScrollTrigger.create({
-      trigger: leftImgRef.current,
-      start: "top top+=50",
-      // toggleActions: 'play none none play',
-      onEnter: () => anim.play(),
-    });
 
-    ScrollTrigger.create({
-      trigger: leftImgRef.current,
-      start: "center top+=50",
-      // toggleActions: 'play none none play',
-      onLeave: () => anim.reverse(),
-    });
-    gsap.from(leftImgDivRef.current, {
-      opacity: 0,
-      duration: 1,
-      backgroundPosition: "200px 0px",
-    });
+    // leftDivRef.current.forEach((el, index) => {
+    //   gsap.from(el, {
+    //     opacity: 0,
+    //     duration: 1,
+    //     backgroundPosition: "200px 0px",
+    //   });
+    // });
+  };
+
+  const animateStep2 = () => {
+    gsap.fromTo(
+      step2Ref.current,
+      {
+        display: "none",
+        duration: 1,
+        y: -30,
+        x: -50,
+        rotateX: 0,
+        rotateY: 10,
+        scaleX: 1,
+      },
+      {
+        display: "block",
+        duration: 1,
+        y: 30,
+        x: 0,
+        rotateX: 10,
+        rotateY: -10,
+        scaleX: 1.04,
+        pin: true,
+        scrollTrigger: {
+          trigger: step2Ref.current,
+          start: "top center",
+          // end: "center bottom",
+          toggleActions: "play reverse play reverse",
+        },
+      }
+    );
+    // gsap.from(rightImgDivRef.current, {
+    //   opacity: 0,
+    //   duration: 1,
+    //   backgroundPosition: "200px 0px",
+    // });
+  };
+
+  const animateStep3 = () => {
+    gsap.fromTo(
+      step3Ref.current,
+      {
+        display: "none",
+        duration: 1,
+        y: -30,
+        x: 100,
+        rotateX: 0,
+        rotateY: -10,
+        scaleX: 1,
+      },
+      {
+        display: "block",
+        duration: 1,
+        scrub: 1,
+        y: 10,
+        x: 0,
+        rotateX: 10,
+        rotateY: 10,
+        scaleX: 1.04,
+        pin: true,
+        scrollTrigger: {
+          trigger: step3Ref.current,
+          start: "top bottom",
+          end: "center top",
+          toggleActions: "play reverse play reverse",
+        },
+      }
+    );
   };
 
   const animateText = () => {
@@ -154,26 +210,29 @@ const Section3 = () => {
 
   useEffect(() => {
     animateText();
-    animateRightImg();
-    animateLeftImg();
     animateTriangles();
+    animateStep1();
+    animateStep2();
+    animateStep3();
   });
 
   return (
     <>
-      <div className="w-8/12 mx-auto flex justify-between space-x-4 py-20">
+      {/* step 1 */}
+      <div className="w-8/12 mx-auto flex justify-between space-x-4 pt-20 pb-64">
         <div className="w-1/2 flex flex-col relative">
           <img
-            ref={leftTriangleRef}
+            ref={triangle1Ref}
             className=""
             src="https://strapi.io/assets/decoration/triangle.svg"
+            alt="triangle"
           />
-          <div className="absolute bottom-0" ref={leftImgDivRef}>
+          <div className="absolute bottom-0">
             <img
-              ref={leftImgRef}
+              ref={step1Ref}
               className="hero-image w-full h-96  object-cover rounded-lg"
               src="https://image.freepik.com/free-photo/venice-canal-with-tourist-gondola_49537-57.jpg"
-              alt="hero"
+              alt="boat"
             />
           </div>
         </div>
@@ -188,7 +247,8 @@ const Section3 = () => {
           </div>
         </div>
       </div>
-      <div className="w-8/12 mx-auto flex justify-between space-x-4 pb-20">
+      {/* step 2 */}
+      <div className="w-8/12 mx-auto flex justify-between space-x-4 pb-64">
         <div className="w-1/2">
           <div className="pt-10">
             <h1 className="font-bold text-3xl pb-4" ref={addToHeroTextRefs}>
@@ -201,17 +261,47 @@ const Section3 = () => {
         </div>
         <div className="w-1/2 flex flex-col items-end relative">
           <img
-            ref={rightTriangleRef}
+            ref={triangle2Ref}
             className="transform rotate-90"
             src="https://strapi.io/assets/decoration/triangle.svg"
+            alt="triangle"
           />
-          <div className="absolute" ref={rightImgDivRef}>
+          <div className="absolute lg:left-2 top-0" ref={rightImgDivRef}>
             <img
-              ref={rightImgRef}
+              ref={step2Ref}
               className="hero-image w-full h-96  object-cover rounded-lg"
               src="https://image.freepik.com/free-photo/graffiti-children-bicycle_1122-2206.jpg"
-              alt="hero"
+              alt="cycle"
             />
+          </div>
+        </div>
+      </div>
+      {/* step 3 */}
+      <div className="w-8/12 mx-auto flex justify-between space-x-4 pb-20">
+        <div className="w-1/2 flex flex-col relative">
+          <img
+            ref={triangle3Ref}
+            className="transform rotate-90"
+            src="https://strapi.io/assets/decoration/triangle.svg"
+            alt="triangle"
+          />
+          <div className="absolute top-4">
+            <img
+              ref={step3Ref}
+              className="hero-image w-full h-96  object-cover rounded-lg"
+              src="https://image.freepik.com/free-psd/minimal-desktop-workspace-mock-up-design_23-2149012109.jpg"
+              alt="boat"
+            />
+          </div>
+        </div>
+        <div className="w-1/2">
+          <div className="pt-20 flex flex-col items-end">
+            <h1 className="font-bold text-3xl pb-4" ref={addToHeroTextRefs}>
+              Trending.Arts.For.You
+            </h1>
+            <p ref={addToHeroTextRefs}>
+              Check out all the latest arts from all around the world.
+            </p>
           </div>
         </div>
       </div>
